@@ -9,7 +9,7 @@ p2.classList.add("fade");
 
 function checkCode(){
 let input=document.getElementById("code").value.toLowerCase().trim();
-if(input==="love"){
+if(input==="unlockmyheart❤️"){
 document.getElementById("letter").classList.remove("hidden");
 }else{
 alert("Wrong secret code 💔");
