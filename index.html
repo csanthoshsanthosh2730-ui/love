@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>To My Future Love 💖</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<div id="loadingScreen" style="
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:linear-gradient(135deg,#ff9ecb,#ff6fa5);
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+color:white;
+z-index:10000;
+font-family:sans-serif;
+text-align:center;
+">
+
+<h1 style="animation:pulse 1.5s infinite;">
+💫 Loading Your Destiny... 💫
+</h1>
+
+<p style="margin-top:15px;">Preparing something magical for you 💖</p>
+
+</div>
+<div class="stars"></div>
+<div class="hearts"></div>
+<div class="card" id="page1">
+<h2>✨ To My Future Love ✨</h2>
+<p>I've been waiting for you 💌</p>
+<div class="mini-heart">🩵</div>
+<button onclick="goNext()">❤️ Enter My Heart ❤️</button>
+</div>
+
+<div class="card hidden" id="page2">
+<h3>Enter Secret Code 🔐</h3>
+<input type="text" id="code">
+<button onclick="checkCode()">Unlock ❤️</button>
+
+<div id="letter" class="hidden">
+<p style="margin-top:15px;">
+If you are reading this… destiny finally brought you to me 💫
+</p>
+<div class="love-container">
+    <!-- envelope and paper -->
+
+   <div class="envelope" onclick="openLoveLetter()">
+    <div class="heart-inside">❤️</div>
+</div>
+   <div class="paper" id="paper">
+    <p id="letterText"></p>
+    <button onclick="closeLoveLetter()" style="margin-top:15px;">Close 💕</button>
+</div>
+
+</div>
+
+<button onclick="showProposal()">💍 I Have Something To Ask...</button>
+
+<div id="proposal" class="hidden">
+<h3>Will You Be Mine Forever? 💖</h3>
+<div id="fireworks-container"></div>
+<button onclick="yesLove()">Yes ❤️</button>
+</div>
+</div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

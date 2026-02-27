@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Unlock Love 💖</title>
+
+<style>
+body{
+margin:0;
+height:100vh;
+background:black;
+overflow:hidden;
+display:flex;
+justify-content:center;
+align-items:center;
+cursor:none;
+}
+
+/* stars */
+.star{
+position:absolute;
+width:3px;
+height:3px;
+background:white;
+border-radius:50%;
+animation:twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle{
+from{opacity:0.3;}
+to{opacity:1;}
+}
+/* floating hearts already iruku (use pannalam) */* button */
+.unlock-btn{
+padding:15px 35px;
+background:#ff4da6 !important;
+color:white !important;
+border:none;
+border-radius:30px;
+font-size:20px;
+cursor:pointer;
+box-shadow:0 0 20px rgba(255,0,150,0.7);
+
+/* IMPORTANT 👇 */
+appearance:none;
+-webkit-appearance:none;
+}
+
+.unlock-btn:hover{
+transform:scale(1.05);
+background:#ff1a8c !important;
+}
+/* popup */
+#popup{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+display:none;
+justify-content:center;
+align-items:center;
+background:rgba(0,0,0,0.6);
+backdrop-filter:blur(5px);
+}
+
+.popup-box{
+background:white;
+padding:25px;
+border-radius:20px;
+text-align:center;
+animation:scaleIn 0.4s;
+}
+
+@keyframes scaleIn{
+from{transform:scale(0);}
+to{transform:scale(1);}
+}
+
+input{
+padding:10px;
+border-radius:10px;
+border:1px solid #ccc;
+margin-top:10px;
+}
+
+.popup-btn{
+margin-top:15px;
+padding:10px 20px;
+background:#ff4da6;
+color:white;
+border:none;
+border-radius:20px;
+cursor:pointer;
+}
+
+/* unlock animation */
+.unlock{
+font-size:60px;
+animation:shake 0.5s;
+}
+
+@keyframes shake{
+0%{transform:translateX(0);}
+25%{transform:translateX(-5px);}
+50%{transform:translateX(5px);}
+75%{transform:translateX(-5px);}
+100%{transform:translateX(0);}
+}
+
+/* final text */
+#final{
+display:none;
+text-align:center;
+color:white;
+padding:20px;
+}
+
+.line{
+font-size:22px;
+margin:10px 0;
+opacity:0;
+}
+
+/* buttons */
+.choice-btn{
+margin:10px;
+padding:12px 25px;
+border:none;
+border-radius:25px;
+background:#ff4da6;
+color:white;
+cursor:pointer;
+}
+
+/* celebration */
+#celebration{
+display:none;
+text-align:center;
+color:white;
+font-size:30px;
+backdrop-filter:blur(3px);
+}
+
+/* floating hearts */
+.heart{
+position:absolute;
+color:white;
+animation:float 5s linear infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(100vh);}
+100%{transform:translateY(-10vh);}
+}
+.last-line{
+font-size:32px;
+font-weight:bold;
+color:white;
+text-align:center;
+
+/* START invisible */
+opacity:0;
+transform:scale(0.5);
+
+/* animation */
+animation:finalShow 1.5s ease forwards,
+          glowPulse 1.5s infinite alternate 1.5s;
+}
+
+@keyframes finalShow{
+0%{
+opacity:0;
+transform:scale(0.5);
+}
+60%{
+opacity:1;
+transform:scale(1.1);
+}
+100%{
+opacity:1;
+transform:scale(1);
+}
+}
+
+@keyframes glowPulse{
+from{
+text-shadow:0 0 10px #ff4da6;
+}
+to{
+text-shadow:0 0 25px #ff1a8c,
+            0 0 40px #ff66b2;
+}
+}
+@keyframes fadeHeart{
+0%{
+opacity:1;
+transform:scale(1);
+}
+100%{
+opacity:0;
+transform:translateY(-15px) scale(1.5);
+}
+}
+</style>
+</head>
+
+<body>
+
+<button id="unlockBtn" class="unlock-btn" onclick="openPopup()">Unlock 🔓</button>
+
+<!-- popup -->
+<div id="popup">
+  <div class="popup-box">
+    <h3>Type your name 💖</h3>
+    <input type="text" id="nameInput" placeholder="Enter name">
+    <br>
+    <button class="popup-btn" onclick="checkName()">Unlock ❤️</button>
+  </div>
+</div>
+
+<!-- unlock animation -->
+<div id="unlockAnim" style="display:none; text-align:center;">
+  <div class="unlock">🔐</div>
+</div>
+
+<!-- final message -->
+<div id="final"></div>
+
+<!-- celebration -->
+<div id="celebration"></div>
+
+<script>
+
+// open popup
+function openPopup(){
+document.getElementById("popup").style.display="flex";
+document.getElementById("unlockBtn").style.display="none";
+}
+
+// check name
+function checkName(){
+let name=document.getElementById("nameInput").value;
+
+if(name.trim()==""){
+alert("Enter your name 💖");
+return;
+}
+
+document.getElementById("popup").style.display="none";
+
+// unlock animation
+let unlock=document.getElementById("unlockAnim");
+unlock.style.display="block";
+unlock.innerHTML="🔐";
+
+setTimeout(()=>{
+unlock.innerHTML="🔓";
+},500);
+
+setTimeout(()=>{
+unlock.style.display="none";
+showMessage(name);
+},1500);
+}
+
+// typing effect
+function showMessage(name){
+let final=document.getElementById("final");
+final.style.display="block";
+
+let lines=[
+`Hey ${name} 💖`,
+"This is not just a website...",
+"This is my heart ❤️",
+"From the moment I thought of you,",
+"everything started feeling special ✨",
+"Will you stay in it forever?"
+];
+
+let i=0;
+
+function typeLine(){
+if(i<lines.length){
+let p=document.createElement("div");
+p.className="line";
+p.innerText=lines[i];
+final.appendChild(p);
+
+setTimeout(()=>{p.style.opacity=1;},100);
+
+i++;
+setTimeout(typeLine,1000);
+}else{
+showButtons();
+}
+}
+
+typeLine();
+}
+
+// buttons
+function showButtons(){
+let final=document.getElementById("final");
+
+let yes=document.createElement("button");
+yes.innerText="YES 💖";
+yes.className="choice-btn";
+yes.onclick=celebrate;
+
+let forever=document.createElement("button");
+forever.innerText="FOREVER ❤️";
+forever.className="choice-btn";
+forever.onclick=celebrate;
+
+final.appendChild(yes);
+final.appendChild(forever);
+}
+
+// celebration
+function celebrate(){
+document.getElementById("final").style.display="none";
+let c=document.getElementById("celebration");
+c.style.display="block";
+setTimeout(()=>{
+c.innerHTML = `
+<div class="last-line">
+I don’t need a perfect life...<br>
+I just need you in mine ❤️✨
+</div>
+`;
+},500);
+// hearts animation
+setInterval(()=>{
+let h=document.createElement("div");
+h.className="heart";
+h.innerText="💖";
+h.style.left=Math.random()*100+"vw";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),5000);
+},300);
+}
+setInterval(()=>{
+let s=document.createElement("div");
+s.className="star";
+s.style.left=Math.random()*100+"vw";
+s.style.top=Math.random()*100+"vh";
+document.body.appendChild(s);
+setTimeout(()=>s.remove(),2000);
+},100);
+document.addEventListener("mousemove",(e)=>{
+
+let heart=document.createElement("div");
+heart.innerText="💜";
+
+heart.style.position="fixed";
+heart.style.left=e.clientX+"px";
+heart.style.top=e.clientY+"px";
+heart.style.pointerEvents="none";
+heart.style.fontSize = (12 + Math.random()*10) + "px";
+heart.style.zIndex="9999";
+
+heart.style.animation="fadeHeart 0.8s linear";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},800);
+
+});
+let glow=document.createElement("div");
+
+glow.style.position="fixed";
+glow.style.width="25px";
+glow.style.height="25px";
+glow.style.borderRadius="50%";
+glow.style.background="rgba(255,77,166,0.8)";
+glow.style.pointerEvents="none";
+glow.style.zIndex="9998";
+
+document.body.appendChild(glow);
+
+document.addEventListener("mousemove",(e)=>{
+glow.style.left=e.clientX+"px";
+glow.style.top=e.clientY+"px";
+});
+document.addEventListener("click",(e)=>{
+
+for(let i=0;i<8;i++){
+let h=document.createElement("div");
+h.innerText="🥰";
+
+h.style.position="fixed";
+h.style.left=e.clientX+"px";
+h.style.top=e.clientY+"px";
+h.style.pointerEvents="none";
+h.style.fontSize="18px";
+h.style.zIndex="9999";
+
+let angle=Math.random()*2*Math.PI;
+let distance=50 + Math.random()*30;
+
+document.body.appendChild(h);
+
+setTimeout(()=>{
+h.style.transform=`translate(${Math.cos(angle)*distance}px, ${Math.sin(angle)*distance}px) scale(1.5)`;
+h.style.opacity=0;
+h.style.transition="1s";
+},10);
+
+setTimeout(()=>h.remove(),1000);
+}
+
+});
+</script>
+
+</body>
+</html>

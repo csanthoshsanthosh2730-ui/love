@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Catch My Love 💖</title>
+
+<style>
+body{
+margin:0;
+height:100vh;
+overflow:hidden;
+display:flex;
+justify-content:center;
+align-items:center;
+font-family:sans-serif;
+color:white;
+background:linear-gradient(270deg,#ff9ecb,#ff6fa5,#ff3d7f);
+background-size:600% 600%;
+animation:bgMove 10s ease infinite;
+}
+
+/* animated background */
+@keyframes bgMove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+#title{
+position:fixed;
+top:60px;
+font-size:28px;
+text-shadow:0 0 15px white;
+animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow{
+from{opacity:0.6;}
+to{opacity:1;}
+}
+
+#score{
+position:fixed;
+top:20px;
+font-size:24px;
+text-shadow:0 0 10px white;
+}
+
+/* main heart */
+.heart{
+position:absolute;
+font-size:200px;
+cursor:pointer;
+transition:0.3s;
+filter:drop-shadow(0 0 10px #fff);
+}
+/* floating hearts */
+.floating{
+position:absolute;
+font-size:20px;
+animation:floatUp 6s linear infinite;
+opacity:0.7;
+}
+
+@keyframes floatUp{
+0%{transform:translateY(100vh);opacity:0;}
+50%{opacity:1;}
+100%{transform:translateY(-10vh);opacity:0;}
+}
+.win-screen{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+display:flex;
+justify-content:center;
+align-items:center;
+
+/* overlay (best look 🔥) */
+background:rgba(0,0,0,0.2);
+
+z-index:9999;
+}
+
+/* popup box */
+.win-box{
+background:rgba(255,255,255,0.2);
+padding:30px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+text-align:center;
+box-shadow:0 0 20px white;
+}
+</style>
+</head>
+
+<body>
+<h3 id="title">Catch the Heart 🩵</h3>
+<h2 id="score">💖 Score: 0</h2>
+<div class="heart">🩵</div>
+
+
+<script>
+let score = 0;
+let hearts = document.querySelectorAll(".heart");
+
+function moveHeart(heart){
+heart.style.top = Math.random()*80 + "vh";
+heart.style.left = Math.random()*80 + "vw";
+}
+
+hearts.forEach(heart => {
+
+moveHeart(heart);
+
+heart.onclick = function(){
+score++;
+document.getElementById("score").innerText="💖 Score: "+score;
+
+moveHeart(heart);
+
+if(score>=3){
+setTimeout(()=>{
+
+let winScreen = document.createElement("div");
+winScreen.className = "win-screen";
+
+winScreen.innerHTML = `
+<div class="win-box">
+<h2>🎉 Congratulations 💖</h2>
+<p>You caught my heart 😍</p>
+
+<button onclick="goGame2()">Continue ➡️</button>
+</div>
+`;
+
+document.body.appendChild(winScreen);
+
+},300);
+}
+
+};
+
+setInterval(()=>{
+moveHeart(heart);
+},900);
+
+});
+
+function goGame2(){
+window.location.href="game2.html";
+}
+</script>
+
+</body>
+</html>
