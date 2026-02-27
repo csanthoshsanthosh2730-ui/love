@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Catch My Love 💖</title>
 
 <style>
@@ -27,7 +28,7 @@ animation:bgMove 10s ease infinite;
 #title{
 position:fixed;
 top:60px;
-font-size:28px;
+font-size:clamp(18px, 5vw, 28px);
 text-shadow:0 0 15px white;
 animation: glow 1.5s infinite alternate;
 }
@@ -40,14 +41,14 @@ to{opacity:1;}
 #score{
 position:fixed;
 top:20px;
-font-size:24px;
+font-size:clamp(16px, 5vw, 24px);
 text-shadow:0 0 10px white;
 }
 
 /* main heart */
 .heart{
   position:absolute;
-  font-size: clamp(14px, 3vw, 40px);
+ font-size:clamp(80px, 25vw, 180px);
   cursor:pointer;
   transition:0.3s;
   filter:drop-shadow(0 0 10px #fff);
