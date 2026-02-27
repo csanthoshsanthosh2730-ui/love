@@ -7,6 +7,7 @@
 body{
 margin:0;
 height:100vh;
+overflow: auto;
 display:flex;
 justify-content:center;
 align-items:center;
@@ -33,6 +34,8 @@ opacity:0.7;
 /* game box */
 .game-box{
 padding:20px;
+max-width: 95vw;
+overflow:hidden;
 border-radius:20px;
 background:rgba(255,255,255,0.15);
 backdrop-filter:blur(10px);
@@ -40,8 +43,21 @@ z-index:2;
 }
 /* grid */
 .grid{
+display: grid;   /* IMPORTANT */
 grid-template-columns: repeat(5, 80px);
 gap: 10px;
+justify-content: center;
+}
+  @media (max-width: 600px){
+.grid{
+grid-template-columns: repeat(3, 70px);
+}
+
+.card{
+width:70px;
+height:70px;
+font-size:11px;
+}
 }
 /* card */
 .card{
