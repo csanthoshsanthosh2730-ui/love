@@ -297,7 +297,7 @@ setTimeout(()=>{
 this.style.transform="scale(1)";
 },200);
 
-if(score>=3){
+if(score>=6){
 setTimeout(()=>{
 alert("You caught all my love 💕");
 window.location.href="game2.html";
