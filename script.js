@@ -43,7 +43,7 @@ document.body.appendChild(screen);
 launchFireworks();
 
 /* ✍️ Typing Effect */
-let text="Santhosh ❤️ My Future Queen";
+let text="Santhosh ❤️ Menaka";
 let i=0;
 let typing=document.getElementById("typing");
 
